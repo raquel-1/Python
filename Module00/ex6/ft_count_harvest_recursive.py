@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
 def recursive_mine(days: int) -> None:
-    if days >= 2:
-        recursive_mine(days - 1)
+    if days == 0:
+        return
+    recursive_mine(days - 1)
     print(f"Day {days}")
 
 
