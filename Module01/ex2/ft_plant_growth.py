@@ -34,4 +34,3 @@ if __name__ == "__main__":
         flower1.grow()
         flower1.age()
     print(f"Growth this week: {round(flower1.height - start_h, 1)}cm")
-
