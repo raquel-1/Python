@@ -5,8 +5,8 @@ class Plant:
 
     def __init__(self, name: str, height: float, my_age: int) -> None:
         self._name: str = name
-        self.height = 0.0
-        self.my_age = 0
+        self._height: float = 0.0
+        self._my_age: int = 0
         self.set_height(height, init=True)
         self.set_age(my_age, init=True)
 
@@ -14,7 +14,6 @@ class Plant:
         if height < 0:
             print(f"{self._name}: Error, height can't be negative")
             print("Height update rejected")
-            self._height = 0.0
         else:
             self._height = height
             if not init:
@@ -27,7 +26,6 @@ class Plant:
         if age < 0:
             print(f"{self._name}: Error, age can't be negative")
             print("Age update rejected")
-            self._my_age = 0
         else:
             self._my_age = age
             if not init:
@@ -39,7 +37,7 @@ class Plant:
     def show(self) -> None:
         """Displays the plant information in a formatted way."""
         print(
-            f"{self._name}: {round(self._height, 1)}cm, "
+            f"{self._name}: {float(self._height)}cm, "
             f"{self._my_age} days old"
         )
 
