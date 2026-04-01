@@ -46,11 +46,22 @@ Make sure your file includes:
 if __name__ == "__main__":
     ft_hello_garden()
 ```
+---
 
-con el mypy:
-instalar : pip install --user mypy
-ejecutar : python3 -m mypy --strict ft_hello_garden.py 
+## Run mypy
+```bash
+pip install --user mypy
 
+python3 -m mypy --strict ft_hello_garden.py 
+```
+
+## Resources
+
+##### Inheritance:
+- [DataCamp - Python Inheritance](https://www.datacamp.com/tutorial/python-inheritance)
+
+##### @staticmethod and @classmethod:
+- [Codefinity - Static and Class Methods](https://codefinity.com/courses/v2/fe5c351e-cb4a-4e9b-b4fc-ce8a7421466f/1d6d34fe-ff2b-49af-96d0-69ccefb7b03c/3e75134e-ca71-4f5f-ba23-c05b9e0a0b39)
 ---
 
 **School**: 42 MADRID
