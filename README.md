@@ -53,6 +53,8 @@ if __name__ == "__main__":
 pip install --user mypy
 
 python3 -m mypy --strict ft_hello_garden.py 
+
+python3 -m mypy --strict .
 ```
 
 ## Resources
