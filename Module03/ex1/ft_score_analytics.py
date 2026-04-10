@@ -11,7 +11,6 @@ if __name__ == "__main__":
     print("=== Player Score Analytics ===")
     lis = sys.argv[1:]
     lis_int = []
-    high = 0
     for i in lis:
         try:
             n = input_argv(i)
@@ -25,7 +24,7 @@ if __name__ == "__main__":
         )
     else:
         print("Scores processed:", lis_int)
-        print("Total players:", len(lis))
+        print("Total players:", len(lis_int))
         print("Total score:", sum(lis_int))
         print("Average score:", sum(lis_int) / len(lis_int))
         print("High score:", max(lis_int))
