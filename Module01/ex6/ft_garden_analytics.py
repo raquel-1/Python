@@ -20,7 +20,6 @@ class Plant:
         self._my_age: int = 0
         self.set_height(height, init=True)
         self.set_age(my_age, init=True)
-        # We use Any so that Mypy will allow the switch to TreeStats later
         self._stats: Plant.Stats = self.Stats()
 
     @staticmethod
@@ -83,6 +82,7 @@ class Plant:
 
 
 class Tree(Plant):
+
     # define specific  Stats for Tree
     class TreeStats(Plant.Stats):
         def __init__(self) -> None:
