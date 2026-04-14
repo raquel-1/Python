@@ -12,7 +12,7 @@ def distance(c1: Point3D, c2: Point3D) -> float:
     return math.sqrt((x2-x1)**2 + (y2-y1)**2 + (z2-z1)**2)
 
 
-def ft_split(s: str) -> list:
+def ft_split(s: str) -> list[str]:
     words = []
     i = 0
     while i < len(s):
@@ -36,23 +36,23 @@ def ft_trim(s: str) -> str:
     return s[i:j+1]
 
 
-def format(s: str) -> Point3D:
+def format(s: str) -> Point3D | None:
     parts = ft_split(s)
     coords = []
     if len(parts) != 3:
         print("Invalid syntax")
-        return
+        return None
     for part in parts:
         trimmed = ft_trim(part)
         try:
             coords += [float(trimmed)]
         except ValueError as e:
             print(f"Error on parameter '{trimmed}': {e}")
-            return
+            return None
     return (coords[0], coords[1], coords[2])
 
 
-def get_player_pos():
+def get_player_pos() -> Point3D:
     while True:
         s = input("Enter new coordinates as floats in format 'x,y,z': ")
         coor = format(s)
@@ -63,6 +63,7 @@ def get_player_pos():
             break
     return coor
 
+
 if __name__ == "__main__":
     print("Get a first set of coordinates")
     c1 = get_player_pos()
@@ -70,4 +71,5 @@ if __name__ == "__main__":
     print("")
     print("Get a second set of coordinates")
     c2 = get_player_pos()
-    print("Distance between the 2 sets of coordinates:", round(distance(c1, c2), 4))
+    dist = round(distance(c1, c2), 4)
+    print("Distance between the 2 sets of coordinates:", dist)
