@@ -38,24 +38,25 @@ def ft_trim(s: str) -> str:
 
 def format(s: str) -> Point3D:
     parts = ft_split(s)
+    coords = []
     if len(parts) != 3:
+        print("Invalid syntax")
         return
-    try:
-        x = float(ft_trim(parts[0]))
-        y = float(ft_trim(parts[1]))
-        z = float(ft_trim(parts[2]))
-        return (x, y, z)
-    except ValueError as e:
-        print(f"could not convert string to float: '{e}'")
-        return
+    for part in parts:
+        trimmed = ft_trim(part)
+        try:
+            coords += [float(trimmed)]
+        except ValueError as e:
+            print(f"Error on parameter '{trimmed}': {e}")
+            return
+    return (coords[0], coords[1], coords[2])
+
 
 def get_player_pos():
     while True:
         s = input("Enter new coordinates as floats in format 'x,y,z': ")
         coor = format(s)
-        if coor is None:
-            print("Invalid syntax")
-        else:
+        if coor is not None:
             x, y, z = coor
             print(f"Got a first tuple: {coor}")
             print(f"It includes: X={x}, Y={y}, Z={z}")
