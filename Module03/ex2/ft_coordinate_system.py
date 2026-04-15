@@ -38,18 +38,18 @@ def ft_trim(s: str) -> str:
 
 def format(s: str) -> Point3D | None:
     parts = ft_split(s)
-    coords = []
+    coor = []
     if len(parts) != 3:
         print("Invalid syntax")
         return None
     for part in parts:
         trimmed = ft_trim(part)
         try:
-            coords += [float(trimmed)]
+            coor += [float(trimmed)]
         except ValueError as e:
             print(f"Error on parameter '{trimmed}': {e}")
             return None
-    return (coords[0], coords[1], coords[2])
+    return (coor[0], coor[1], coor[2])
 
 
 def get_player_pos() -> Point3D:
