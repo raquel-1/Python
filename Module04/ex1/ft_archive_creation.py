@@ -34,6 +34,7 @@ if __name__ == "__main__":
             new_data = ""
             for line in lines:
                 # line[:-1] all but the last character (\n)
+                # new_data += line.rstrip('\n') + "#\n"
                 new_data += line[:-1] + "#\n"
             print("Transform data:")
             print("---")

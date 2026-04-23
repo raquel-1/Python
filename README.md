@@ -1,10 +1,10 @@
-# Python
-
 *Este proyecto ha sido creado como parte del currículo de 42 por raqroca-.*
 
----
+# Python  💻 🐍 👍 🤩 👍
+
 
 ## Python Script Setup & Execution (Linux)
+
 
 #### 1. Install flake8
 ```bash
