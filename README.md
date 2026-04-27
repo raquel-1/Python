@@ -65,6 +65,9 @@ python3 -m mypy --strict .
 
 
 - [Python Tutorial](https://www.geeksforgeeks.org/python/python-programming-language-tutorial/)
+
+
+- [El Libro De Python](https://ellibrodepython.com/)
 ---
 
 **School**: 42 MADRID
