@@ -118,7 +118,7 @@ class DataStream:
         # store object in DataStream
         self.processors.append(proc)
 
-    def process_stream(self, stream: list) -> None:
+    def process_stream(self, stream: list[Any]) -> None:
         # iterate through each element of stream[]
         for element in stream:
             # processed????

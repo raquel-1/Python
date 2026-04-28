@@ -7,6 +7,7 @@ from typing import Any
 class DataProcessor(ABC):
     def __init__(self) -> None:
         self.storage: list[str] = []
+        # count how many have been printed via output()
         self.processed_count: int = 0
 
     @abstractmethod
@@ -21,7 +22,7 @@ class DataProcessor(ABC):
     def output(self) -> tuple[int, str]:
         if not self.storage:
             raise IndexError("No data to output")
-        # get the oldest item[0] and remove
+        # get the first item[0] and remove
         data = self.storage.pop(0)
         # get current rank and counter+=1
         rank = self.processed_count
