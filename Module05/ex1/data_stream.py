@@ -7,6 +7,7 @@ from typing import Any
 class DataProcessor(ABC):
     def __init__(self) -> None:
         self.storage: list[str] = []
+        # count how many have been printed via output()
         self.processed_count: int = 0
 
     @abstractmethod
@@ -111,20 +112,94 @@ class DataStream:
         self.processors: list[DataProcessor] = []
 
     def register_processor(self, proc: DataProcessor) -> None:
+        # get class__name__("NumericProcessor" -> "Numeric Processor")
+        name = type(proc).__name__.replace("Processor", " Processor")
+        print(f"Registering {name}")
+        # store object in DataStream
         self.processors.append(proc)
 
     def process_stream(self, stream: list) -> None:
-    for element in stream:           # recorre cada elemento del stream
-        handled = False              # aún nadie lo ha procesado
-        
-        for proc in self.processors: # prueba cada procesador de la lista
-            if proc.validate(element):   # ¿este procesador puede con él?
-                proc.ingest(element)     # sí → lo ingesta
-                handled = True           # marcamos que ya fue procesado
-                break                    # para, no hace falta seguir probando
-        
-        if not handled:              # si nadie pudo procesarlo...
-            print(f"DataStream error - Can't process element in stream: {element}")
+        # iterate through each element of stream[]
+        for element in stream:
+            # processed????
+            is_processed = False
+            # test each processor(object) on the list
+            for proc in self.processors:
+                # use object-specific methods
+                if proc.validate(element):
+                    proc.ingest(element)
+                    is_processed = True
+                    # found one to deal with it out. Bye
+                    break
+            # nobody processed it
+            if not is_processed:
+                print(
+                    "DataStream error - Can't process "
+                    f"element in stream: {element}"
+                )
+
+    def print_processors_stats(self) -> None:
+        print("== DataStream statistics ==")
+        if len(self.processors) == 0:
+            print("No processor found, no data")
+        else:
+            for pro in self.processors:
+                name = type(pro).__name__.replace("Processor", " Processor")
+                total = pro.processed_count + len(pro.storage)
+                print(
+                    f"{name}: total {total} items processed,"
+                    f" remaining {len(pro.storage)} on processor"
+                )
 
 
 if __name__ == "__main__":
+    print("====== Code Nexus - Data Stream ======\n")
+    data_stream = DataStream()
+    print("Initialize Data Stream...")
+    data_stream.print_processors_stats()
+
+    # record ONLY numbers
+    print("")
+    num_pro = NumericProcessor()
+    data_stream.register_processor(num_pro)
+
+    data_list = [
+        'Hello world',
+        [3.14, -1, 2.71],
+        [{'log_level': 'WARNING', 'log_message': 'Telnet access!'}],
+        [{'log_level': 'INFO', 'log_message': 'User wil is User wil is'}],
+        42,
+        ['Hi', 'five']
+    ]
+    # send the data, but text and logs error (are not registered)
+    print("\nSend first batch of data on stream...")
+    print(data_list)
+    data_stream.process_stream(data_list)
+    data_stream.print_processors_stats()
+
+    print("\nRegistering other data processors:")
+    text_pro = TextProcessor()
+    log_pro = LogProcessor()
+    data_stream.register_processor(text_pro)
+    data_stream.register_processor(log_pro)
+
+    print("\nSend the same batch again")
+    data_stream.process_stream(data_list)
+    data_stream.print_processors_stats()
+
+    # take out some data to show that the "remaining" counter--
+    print(
+        "\nConsume some elements from the data processors:"
+        " Numeric 3, Text 2, Log 1"
+    )
+    # take out 3 numbers
+    num_pro.output()
+    num_pro.output()
+    num_pro.output()
+    # take out 2 text
+    text_pro.output()
+    text_pro.output()
+    # take out 1 log
+    log_pro.output()
+
+    data_stream.print_processors_stats()
