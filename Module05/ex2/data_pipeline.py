@@ -214,8 +214,8 @@ if __name__ == "__main__":
     data_list = [
         'Hello world',
         [3.14, -1, 2.71],
-        [{'log_level': 'WARNING', 'log_message': 'Telnet access!'}],
-        [{'log_level': 'INFO', 'log_message': 'User wil is User wil is'}],
+        [{'log_level': 'WARNING', 'log_message': 'Telnet access! Use ssh instead'}],
+        [{'log_level': 'INFO', 'log_message': 'User wil is connected'}],
         42,
         ['Hi', 'five']
     ]
