@@ -63,9 +63,9 @@ python3 -m mypy --strict .
 
 - [Codefinity - Static and Class Methods](https://codefinity.com/courses/v2/fe5c351e-cb4a-4e9b-b4fc-ce8a7421466f/1d6d34fe-ff2b-49af-96d0-69ccefb7b03c/3e75134e-ca71-4f5f-ba23-c05b9e0a0b39)
 
-
 - [Python Tutorial](https://www.geeksforgeeks.org/python/python-programming-language-tutorial/)
 
+- [What is __Init__.Py File in Python?](https://www.geeksforgeeks.org/python/what-is-__init__-py-file-in-python/)
 
 - [El Libro De Python](https://ellibrodepython.com/)
 ---
