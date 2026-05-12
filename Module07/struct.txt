@@ -1,0 +1,16 @@
+datadeck/
+├── battle.py           ← test ex0
+├── capacitor.py        ← test ex1
+├── tournament.py       ← test ex2
+├── ex0/
+│   ├── __init__.py     ← expone solo factories
+│   ├── creature.py     ← Creature (abstract) + Flameling/Pyrodon/Aquabub/Torragon
+│   └── factory.py      ← CreatureFactory (abstract) + FlameFactory/AquaFactory
+├── ex1/
+│   ├── __init__.py     ← expone solo factories
+│   ├── capabilities.py ← HealCapability + TransformCapability (abstract)
+│   ├── creatures.py    ← Sproutling/Bloomelle/Shiftling/Morphagon
+│   └── factory.py      ← HealingCreatureFactory + TransformCreatureFactory
+└── ex2/
+    ├── __init__.py
+    └── strategy.py     ← BattleStrategy (abstract) + Normal/Aggressive/Defensive
