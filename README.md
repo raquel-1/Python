@@ -57,6 +57,37 @@ python3 -m mypy --strict ft_hello_garden.py
 python3 -m mypy --strict .
 ```
 
+## Virtual Environments
+
+A virtual environment is an isolated Python installation that lives inside a folder in your project. It has its own Python interpreter and its own packages, completely separate from the system. This means you can install whatever you need without affecting the global Python installation or other projects.
+
+#### Test 1: outside the virtual environment
+
+Run the program directly. Python will be the system one and no virtual environment will be detected.
+
+```bash
+# Prueba 1: fuera del venv
+python3 construct.py
+```
+
+#### Test 2: inside the virtual environment
+
+Each command must be executed **one by one** — never paste them all at once.
+
+```bash
+# Prueba 2: dentro del venv
+python3 -m venv matrix_env
+source matrix_env/bin/activate
+python3 construct.py
+deactivate
+```
+
+`python3 -m venv matrix_env` creates the environment inside a folder called `matrix_env/`. `source matrix_env/bin/activate` activates it in your current shell — you will see `(matrix_env)` appear at the start of your prompt as confirmation. After running the program, `deactivate` returns your shell to its normal state.
+
+> **Important:** never commit the `matrix_env/` folder to your repository. Add it to your `.gitignore` and recreate it whenever you need it with the two commands above.
+
+---
+
 ## Resources
 
 - [DataCamp - Python Inheritance](https://www.datacamp.com/tutorial/python-inheritance)
