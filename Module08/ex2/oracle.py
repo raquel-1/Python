@@ -41,7 +41,7 @@ def main() -> None:
     # allows developers to securely store sensitive data
     load_dotenv()
 
-    # retch required variables or None
+    # fetch required variables or None
     env_mode: Optional[str] = os.environ.get("MATRIX_MODE")
     env_db_url: Optional[str] = os.environ.get("DATABASE_URL")
     env_api_key: Optional[str] = os.environ.get("API_KEY")
@@ -67,10 +67,9 @@ def main() -> None:
         print(f"  Zion Network: Routing securely through tunnel: {env_zion}")
     else:
         print(f"  Database: Connected to local instance ({env_db_url})")
-        print(
-            "  API Access: Authenticated with key: ***"
-            + str(env_api_key)[-4:] if env_api_key else 'NONE'
-        )
+        # [-4:] -> last 4 characters
+        masked_key = "***" + str(env_api_key)[-4:] if env_api_key else "NONE"
+        print(f"  API Access: Authenticated with key: {masked_key}")
         print(f"  Log Level: {current_log} (Verbose DEBUG mode enabled)")
         print(f"  Zion Network: Online at: {env_zion}")
 
