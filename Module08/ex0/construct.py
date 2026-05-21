@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
+
 import os
+# knows where the packages are installed on the system
 import site
 import sys
 

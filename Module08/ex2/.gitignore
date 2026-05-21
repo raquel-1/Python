@@ -6,15 +6,12 @@ __pycache__/
 .mypy_cache/
 matrix_env/
 
-# VENV  MODULE08 :
 # === EXERCISE 1 ADDITIONS ===
 # IDEs and editors configuration (Avoid pushing local settings)
 .vscode/
 .idea/
 *.swp
-# Script output (Generated automatically, do not commit to Git)
 matrix_analysis.png
 
 # === EXERCISE 2 ADDITIONS ===
-# Local environment configuration (Contains sensitive keys/secrets)
 .env

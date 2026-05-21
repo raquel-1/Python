@@ -52,13 +52,13 @@ def data_process_graph() -> None:
     data_points = rng.normal(loc=0.0, scale=1.0, size=1000)
 
     # take numbers from NumPy -> Pandas to create DataFrame
-    df = pd.DataFrame(data_points, columns=["Signal_Strength"])
+    dataframe = pd.DataFrame(data_points, columns=["Signal_Strength"])
 
     print("Generating visualization...")
     # preparing to draw 10x6
     plt.figure(figsize=(10, 6))
     # plot a line graph using 1000 data from columns=["Signal_Strength"]
-    plt.plot(df["Signal_Strength"], color="green")
+    plt.plot(dataframe["Signal_Strength"], color="green")
     # Top title for the graph
     plt.title("Matrix Data Stream Analysis")
 
