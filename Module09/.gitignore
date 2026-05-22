@@ -1,0 +1,11 @@
+# .gitignore
+__pycache__/
+*.pyc
+.mypy_cache/
+matrix_env/
+.vscode/
+.idea/
+*.swp
+matrix_analysis.png
+.env
+venv/

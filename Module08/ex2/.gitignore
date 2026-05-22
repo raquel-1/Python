@@ -15,3 +15,5 @@ matrix_analysis.png
 
 # === EXERCISE 2 ADDITIONS ===
 .env
+
+venv/

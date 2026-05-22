@@ -99,6 +99,15 @@ deactivate
 - [What is __Init__.Py File in Python?](https://www.geeksforgeeks.org/python/what-is-__init__-py-file-in-python/)
 
 - [El Libro De Python](https://ellibrodepython.com/)
+
+- [Pydantic Validation BaseModel](https://pydantic.dev/docs/validation/latest/api/pydantic/base_model/)
+
+- [Pydantic Validation Fields](https://pydantic.dev/docs/validation/latest/concepts/fields/)
+
+- [Pydantic Validation Field types](https://pydantic.dev/docs/validation/1.10/usage/types/)
+
+- [Pydantic Validation Validation Errors](https://pydantic.dev/docs/validation/latest/errors/validation_errors/)
+
 ---
 
 **School**: 42 MADRID
