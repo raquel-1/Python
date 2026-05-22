@@ -108,6 +108,11 @@ deactivate
 
 - [Pydantic Validation Validation Errors](https://pydantic.dev/docs/validation/latest/errors/validation_errors/)
 
+- [Pydantic Model validators](https://pydantic.dev/docs/validation/latest/concepts/validators/)
+
+- [Pydantic Python Enum](https://pydantic.dev/docs/validation/2.0/usage/types/enums/)
+
+
 ---
 
 **School**: 42 MADRID

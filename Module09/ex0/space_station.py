@@ -22,9 +22,9 @@ def main() -> None:
         station = SpaceStation(
             station_id="ISS001",
             name="International Space Station",
-            crew_size = 6,
-            power_level= 85.5,
-            oxygen_level = 92.3,
+            crew_size=6,
+            power_level=85.5,
+            oxygen_level=92.3,
             last_maintenance=datetime(2024, 1, 15, 10, 30)
         )
         print("\n Space Station Data Validation")
@@ -44,14 +44,14 @@ def main() -> None:
 
     # Block 2: INVALID station
     print("\n========================================")
-    print(f"Expected validation error:")
+    print("Expected validation error:")
     try:
         station = SpaceStation(
             station_id="ISS001",
             name="International Space Station",
-            crew_size = 42,
-            power_level = 85.5,
-            oxygen_level = 92.3,
+            crew_size=42,
+            power_level=85.5,
+            oxygen_level=92.3,
             last_maintenance=datetime(2024, 1, 15, 10, 30)
         )
         print("Valid station created:")
@@ -62,10 +62,11 @@ def main() -> None:
         print("Oxygen:", station.oxygen_level)
         print(
             "Status:",
-            "Operational" if station.is_operational == True else "No Operational"
+            "Operational" if station.is_operational else "Not Operational"
         )
     except Exception as e:
         print(e)
+
 
 if __name__ == "__main__":
     main()
