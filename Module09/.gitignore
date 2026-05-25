@@ -1,11 +1,21 @@
-# .gitignore
+.DS_Store
+Thumbs.db
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
 .mypy_cache/
+.pytest_cache/
 matrix_env/
+venv/
+.venv/
+env/
+.poetry/
+dist/
+build/
+*.egg-info/
+poetry.lock
 .vscode/
 .idea/
 *.swp
-matrix_analysis.png
+*.swo
 .env
-venv/
