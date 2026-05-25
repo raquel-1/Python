@@ -177,7 +177,9 @@ To fix with Poetry: poetry install
 
 ### 1. Navigate to the Exercise Folder and Install Dependencies
 ```bash
-cd Module08/ex2
+cd ex2
+```
+```bash
 pip install python-dotenv
 ```
 
