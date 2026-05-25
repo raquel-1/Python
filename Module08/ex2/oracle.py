@@ -36,7 +36,9 @@ def check_environment_security() -> Dict[str, str]:
         except IOError:
             status["hardcoded"] = "[WARNING] Could not read .gitignore file."
     else:
-        status["hardcoded"] = "[WARNING] .gitignore missing! Secrets might be exposed."
+        status["hardcoded"] = (
+            "[WARNING] .gitignore missing! Secrets might be exposed."
+        )
 
     # check if .env exists
     if os.path.exists(".env"):
@@ -46,11 +48,17 @@ def check_environment_security() -> Dict[str, str]:
 
     # check for overrides (Terminal priorities)
     if os.environ.get("MATRIX_MODE") == "production":
-        status["overrides"] = "[OK] Production overrides active! Terminal settings prioritized."
+        status["overrides"] = (
+            "[OK] Production overrides active! "
+            "Terminal settings prioritized."
+        )
     else:
-        status["overrides"] = "[INFO] Running with standard environment variables."
+        status["overrides"] = (
+            "[INFO] Running with standard environment variables."
+        )
 
     return status
+
 
 def main() -> None:
     print("\nORACLE STATUS: Reading the Matrix...\n")
@@ -74,7 +82,7 @@ def main() -> None:
     # fallback default values if variables are absent
     current_mode: str = env_mode if env_mode else "development"
     current_log: str = env_log_level if env_log_level else "INFO"
-    
+
     print("Configuration loaded:")
     print(f"  Mode: {current_mode}")
 
@@ -87,13 +95,13 @@ def main() -> None:
     else:
         db_info = env_db_url if env_db_url else "local instance"
         print(f"  Database: Connected to {db_info}")
-        
+
         if env_api_key:
             masked_key = "***" + str(env_api_key)[-4:]
             print(f"  API Access: Authenticated with key: {masked_key}")
         else:
             print("  API Access: [WARNING] No API Key configuration detected")
-            
+
         print(f"  Log Level: {current_log} (Verbose DEBUG mode enabled)")
         print(f"  Zion Network: Online at: {env_zion}")
 
