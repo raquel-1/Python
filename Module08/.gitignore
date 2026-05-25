@@ -1,0 +1,46 @@
+# ==========================================
+# SYSTEM FILES (Avoid OS garbage)
+# ==========================================
+.DS_Store
+Thumbs.db
+
+# ==========================================
+# PYTHON VIRTUAL ENVIRONMENTS & CACHE
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+.mypy_cache/
+.pytest_cache/
+
+# Virtual Environments (Strictly forbidden in repo)
+matrix_env/
+venv/
+.venv/
+env/
+
+# ==========================================
+# POETRY & PACKAGES
+# ==========================================
+.poetry/
+dist/
+build/
+*.egg-info/
+poetry.lock
+
+# ==========================================
+# IDEs & EDITORS (Local configurations)
+# ==========================================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ==========================================
+# EXERCISE SPECIFIC OUTPUTS & SECRETS
+# ==========================================
+# Ex1: Generated visualization
+matrix_analysis.png
+
+# Ex2: REAL secrets file (CRITICAL: Never commit this!)
+.env

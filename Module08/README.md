@@ -202,49 +202,8 @@ python3 oracle.py
 ### 5. Run with Production Environment Override
 
 ```bash
-MATRIX_MODE=production LOG_LEVEL=WARNING python3 oracle.py
+MATRIX_MODE=production python3 oracle.py
 ```
-
----
-
-## Expected Output
-
-### Development Mode Output:
-
-```text
-ORACLE STATUS: Reading the Matrix...
-
-Configuration loaded:
-  Mode: development
-  Database: Connected to local instance (postgresql://localhost:5432/zion_dev)
-  API Access: Authenticated with key: ***here
-  Log Level: DEBUG (Verbose DEBUG mode enabled)
-  Zion Network: Online at: [https://api.zion.resistance](https://api.zion.resistance)
-
-Environment security check:
-  [OK] No hardcoded secrets detected
-  [OK] .env file properly configured
-  [OK] Production overrides available
-
-The Oracle sees all configurations.
-```
-
-### Production Mode Output:
-
-```text
-ORACLE STATUS: Reading the Matrix...
-
-Configuration loaded:
-  Mode: production
-  Database: [SECURE] Connected to Production Mainframe Cluster
-  API Access: [ENCRYPTED] Token Authenticated via SSL
-  Log Level: WARNING (Production restrictions active)
-  Zion Network: Routing securely through tunnel: [https://api.zion.resistance](https://api.zion.resistance)
-
-Environment security check:
-  [OK] No hardcoded secrets detected
-  [OK] .env file properly configured
-  [OK] Production overrides available
-
-The Oracle sees all configurations.
+```bash
+MATRIX_MODE=development python3 oracle.py
 ```
