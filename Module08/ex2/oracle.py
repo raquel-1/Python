@@ -20,19 +20,37 @@ except ImportError:
 
 
 def check_environment_security() -> Dict[str, str]:
-    status: Dict[str, str] = {
-        "hardcoded": "[OK] No hardcoded secrets detected",
-        "dot_env": "[OK] .env file properly configured",
-        "overrides": "[OK] Production overrides available"
-    }
+    status: Dict[str, str] = {}
 
-    # verify .env file exists or using system variables
-    if not os.path.exists(".env") and not os.environ.get("MATRIX_MODE"):
-        war_message = "[WARNING] No .env file found. Using system defaults."
-        status["dot_env"] = war_message
+    gitignore_path = "../.gitignore"
+
+    # check for .gitignore and hardcoded secrets prevention
+    if os.path.exists(gitignore_path):
+        try:
+            with open(gitignore_path, "r", encoding="utf-8") as file:
+                content = file.read()
+            if ".env" in content:
+                status["hardcoded"] = "[OK] No hardcoded secrets detected"
+            else:
+                status["hardcoded"] = "[WARNING] .env missing from .gitignore!"
+        except IOError:
+            status["hardcoded"] = "[WARNING] Could not read .gitignore file."
+    else:
+        status["hardcoded"] = "[WARNING] .gitignore missing! Secrets might be exposed."
+
+    # check if .env exists
+    if os.path.exists(".env"):
+        status["dot_env"] = "[OK] .env file properly configured"
+    else:
+        status["dot_env"] = "[WARNING] .env file missing."
+
+    # check for overrides (Terminal priorities)
+    if os.environ.get("MATRIX_MODE") == "production":
+        status["overrides"] = "[OK] Production overrides active! Terminal settings prioritized."
+    else:
+        status["overrides"] = "[INFO] Running with standard environment variables."
 
     return status
-
 
 def main() -> None:
     print("\nORACLE STATUS: Reading the Matrix...\n")
@@ -56,6 +74,7 @@ def main() -> None:
     # fallback default values if variables are absent
     current_mode: str = env_mode if env_mode else "development"
     current_log: str = env_log_level if env_log_level else "INFO"
+    
     print("Configuration loaded:")
     print(f"  Mode: {current_mode}")
 
@@ -66,20 +85,27 @@ def main() -> None:
         print(f"  Log Level: {current_log} (Production restrictions active)")
         print(f"  Zion Network: Routing securely through tunnel: {env_zion}")
     else:
-        print(f"  Database: Connected to local instance ({env_db_url})")
-        # [-4:] -> last 4 characters
-        masked_key = "***" + str(env_api_key)[-4:] if env_api_key else "NONE"
-        print(f"  API Access: Authenticated with key: {masked_key}")
+        db_info = env_db_url if env_db_url else "local instance"
+        print(f"  Database: Connected to {db_info}")
+        
+        if env_api_key:
+            masked_key = "***" + str(env_api_key)[-4:]
+            print(f"  API Access: Authenticated with key: {masked_key}")
+        else:
+            print("  API Access: [WARNING] No API Key configuration detected")
+            
         print(f"  Log Level: {current_log} (Verbose DEBUG mode enabled)")
         print(f"  Zion Network: Online at: {env_zion}")
 
     print("\nEnvironment security check:")
     security_reports = check_environment_security()
-    for _, report_message in security_reports.items():
+    for report_message in security_reports.values():
         print(f"  {report_message}")
 
     print("\nThe Oracle sees all configurations.")
 
 
 if __name__ == "__main__":
+    # MATRIX_MODE=production python3 oracle.py
+    # MATRIX_MODE=development python3 oracle.py
     main()

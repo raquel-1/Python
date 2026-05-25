@@ -77,7 +77,7 @@ def main() -> None:
     if not DEPENDENCIES_PRESENT:
         print("LOADING STATUS: Loading programs...")
         print("Checking dependencies:")
-        # Forzamos la visualización de los paquetes caídos
+        # force the display of dropped packets
         for pkg in ["pandas", "numpy", "matplotlib"]:
             print(f"[MISSING] {pkg} - Not found")
         print("\nERROR: Missing dependencies detected.")
