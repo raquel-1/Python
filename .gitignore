@@ -1,23 +1,46 @@
-# .gitignore
+# ==========================================
+# SYSTEM FILES (Avoid OS garbage)
+# ==========================================
+.DS_Store
+Thumbs.db
 
-# Python and Environments
+# ==========================================
+# PYTHON VIRTUAL ENVIRONMENTS & CACHE
+# ==========================================
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
 .mypy_cache/
-matrix_env/
+.pytest_cache/
 
-# VENV  MODULE08 :
-# === EXERCISE 1 ADDITIONS ===
-# IDEs and editors configuration (Avoid pushing local settings)
+# Virtual Environments (Strictly forbidden in repo)
+matrix_env/
+venv/
+.venv/
+env/
+
+# ==========================================
+# POETRY & PACKAGES
+# ==========================================
+.poetry/
+dist/
+build/
+*.egg-info/
+poetry.lock
+
+# ==========================================
+# IDEs & EDITORS (Local configurations)
+# ==========================================
 .vscode/
 .idea/
 *.swp
-# Script output (Generated automatically, do not commit to Git)
+*.swo
+
+# ==========================================
+# EXERCISE SPECIFIC OUTPUTS & SECRETS
+# ==========================================
+# Ex1: Generated visualization
 matrix_analysis.png
 
-# === EXERCISE 2 ADDITIONS ===
-# Local environment configuration (Contains sensitive keys/secrets)
+# Ex2: REAL secrets file (CRITICAL: Never commit this!)
 .env
-
-
-venv/
