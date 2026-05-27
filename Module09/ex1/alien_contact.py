@@ -27,10 +27,18 @@ class AlienContact(BaseModel):
     def my_validator(self) -> 'AlienContact':
         if not self.contact_id.startswith("AC"):
             raise ValueError("contact_id must begin with the letters “AC”")
-        elif self.contact_type == ContactType.PHYSICAL and not self.is_verified:
+        elif (
+            self.contact_type == ContactType.PHYSICAL and not self.is_verified
+        ):
             raise ValueError("The report must be verified")
-        elif self.contact_type == ContactType.TELEPATHIC and self.witness_count < 3:
-            raise ValueError("The system requires that there be at least 3 witnesses")
+        elif (
+            self.contact_type == ContactType.TELEPATHIC
+            and self.witness_count < 3
+        ):
+            raise ValueError(
+                "The system requires that "
+                "there be at least 3 witnesses"
+            )
         elif self.signal_strength > 7.0 and self.message_received is None:
             raise ValueError("It must include the message received")
         # always at the end
@@ -91,7 +99,6 @@ def main() -> None:
         print(f"Message: '{contac2.message_received}'")
     except Exception as e:
         print(f"\n{e}")
-
 
 
 if __name__ == "__main__":
