@@ -24,46 +24,43 @@ class AlienContact(BaseModel):
     is_verified: bool = Field(default=False)
 
     @model_validator(mode='after')
-    def my_validator(self) -> 'MiModelo':
-        # aquí tienes acceso a self.campo1, self.campo2...
-        # si algo falla lanzas un ValueError
-        return self  # siempre al final
-
-
-class SpaceStation(BaseModel):
-    station_id: str = Field(min_length=3, max_length=10)
-    name: str = Field(min_length=1, max_length=50)
-    crew_size: int = Field(ge=1, le=20)
-    power_level: float = Field(ge=0.0, le=100.0)
-    oxygen_level: float = Field(ge=0.0, le=100.0)
-    last_maintenance: datetime
-    is_operational: bool = Field(default=True)
-    notes: Optional[str] = Field(default=None, max_length=200)
+    def my_validator(self) -> 'AlienContact':
+        if not self.contact_id.startswith("AC"):
+            raise ValueError("contact_id must begin with the letters “AC”")
+        elif self.contact_type == ContactType.PHYSICAL and not self.is_verified:
+            raise ValueError("The report must be verified")
+        elif self.contact_type == ContactType.TELEPATHIC and self.witness_count < 3:
+            raise ValueError("The system requires that there be at least 3 witnesses")
+        elif self.signal_strength > 7.0 and self.message_received is None:
+            raise ValueError("It must include the message received")
+        # always at the end
+        return self
 
 
 def main() -> None:
     # Block 1: VALID station
     try:
-        station = SpaceStation(
-            station_id="ISS001",
-            name="International Space Station",
-            crew_size=6,
-            power_level=85.5,
-            oxygen_level=92.3,
-            last_maintenance=datetime(2024, 1, 15, 10, 30)
+        contac1 = AlienContact(
+            contact_id="AC_2024_001",
+            timestamp=datetime(2024, 1, 15, 10, 30),
+            location=" Area 51, Nevada",
+            contact_type=ContactType.RADIO,
+            signal_strength=8.5,
+            duration_minutes=45,
+            witness_count=5,
+            message_received="Greetings from Zeta Reticuli",
+            is_verified=False
         )
-        print("\n Space Station Data Validation")
+        print("\nAlien Contact Log Validation")
         print("========================================")
-        print("Valid station created:")
-        print("ID:", station.station_id)
-        print("Name:", station.name)
-        print("Crew:", station.crew_size, "people")
-        print(f"Power: {station.power_level}%")
-        print(f"Oxygen: {station.oxygen_level}%")
-        print(
-            "Status:",
-            "Operational" if station.is_operational else "No Operational"
-        )
+        print("Valid  contact report:")
+        print("ID:", contac1.contact_id)
+        print("Type:", contac1.contact_type)
+        print("Location:", contac1.location)
+        print(f"Signal: {contac1.signal_strength}/10")
+        print(f"Duration: {contac1.duration_minutes} minutes")
+        print(f"Witnesses: {contac1.witness_count}")
+        print(f"Message: '{contac1.message_received}'")
     except Exception as e:
         print(f"\n{e}")
 
@@ -71,26 +68,30 @@ def main() -> None:
     print("\n========================================")
     print("Expected validation error:")
     try:
-        station = SpaceStation(
-            station_id="ISS001",
-            name="International Space Station",
-            crew_size=42,
-            power_level=85.5,
-            oxygen_level=92.3,
-            last_maintenance=datetime(2024, 1, 15, 10, 30)
+        contac2 = AlienContact(
+            contact_id="AC_2024_001",
+            timestamp=datetime(2024, 1, 15, 10, 30),
+            location=" Area 51, Nevada",
+            contact_type=ContactType.TELEPATHIC,
+            signal_strength=8.5,
+            duration_minutes=45,
+            witness_count=1,
+            message_received="Greetings from Zeta Reticuli",
+            is_verified=False
         )
-        print("Valid station created:")
-        print("ID:", station.station_id)
-        print("Name:", station.name)
-        print("Crew:", station.crew_size, "people")
-        print("Power:", station.power_level)
-        print("Oxygen:", station.oxygen_level)
-        print(
-            "Status:",
-            "Operational" if station.is_operational else "Not Operational"
-        )
+        print("\nAlien Contact Log Validation")
+        print("========================================")
+        print("Valid  contact report:")
+        print("ID:", contac2.contact_id)
+        print("Type:", contac2.contact_type)
+        print("Location:", contac2.location)
+        print(f"Signal: {contac2.signal_strength}/10")
+        print(f"Duration: {contac2.duration_minutes} minutes")
+        print(f"Witnesses: {contac2.witness_count}")
+        print(f"Message: '{contac2.message_received}'")
     except Exception as e:
-        print(e)
+        print(f"\n{e}")
+
 
 
 if __name__ == "__main__":
