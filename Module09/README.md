@@ -22,7 +22,9 @@ deactivate
 After git clone:
 ```bash
 cd ex0/
+
 python3 -m venv venv
+
 source venv/bin/activate
 
 # -r: read and install
@@ -55,7 +57,9 @@ deactivate
 After git clone:
 ```bash
 cd ex1/
+
 python3 -m venv venv
+
 source venv/bin/activate
 
 # Install the exact same versions for ex1
@@ -65,17 +69,16 @@ pip install -r requirements.txt
 # EX2
 ```bash
 cd ../ex2/
-python3 -m venv venv
-source venv/bin/activate
 
+python3 -m venv venv
+
+source venv/bin/activate
 
 pip install -r requirements.txt
 ```
 
 ```bash
-# Para ver si te has dejado algún espacio raro o línea larga:
 flake8 .
 
-# Para verificar que no te falte ningún tipo de dato:
 mypy .
 ```
