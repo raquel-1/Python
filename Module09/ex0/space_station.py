@@ -65,7 +65,16 @@ def main() -> None:
             "Operational" if station.is_operational else "Not Operational"
         )
     except Exception as e:
-        print(e)
+        # e.errors() returns the cleaned-up list of errors from Pydantic
+        if hasattr(e, 'errors'):
+            # ("Value error, Must have...")
+            raw_msg = e.errors()[0]['msg']
+            clean_msg = raw_msg.replace("Value error, ", "")
+            # We only show the first error
+            print(f"{clean_msg}")
+        # fails for a reason other than Pydantic
+        else:
+            print(f"{e}")
 
 
 if __name__ == "__main__":

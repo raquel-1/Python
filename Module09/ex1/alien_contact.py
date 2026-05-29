@@ -36,8 +36,7 @@ class AlienContact(BaseModel):
             and self.witness_count < 3
         ):
             raise ValueError(
-                "The system requires that "
-                "there be at least 3 witnesses"
+                "Telepathic contact requires at least 3 witnesses"
             )
         elif self.signal_strength > 7.0 and self.message_received is None:
             raise ValueError("It must include the message received")
@@ -51,7 +50,7 @@ def main() -> None:
         contac1 = AlienContact(
             contact_id="AC_2024_001",
             timestamp=datetime(2024, 1, 15, 10, 30),
-            location=" Area 51, Nevada",
+            location="Area 51, Nevada",
             contact_type=ContactType.RADIO,
             signal_strength=8.5,
             duration_minutes=45,
@@ -63,7 +62,7 @@ def main() -> None:
         print("========================================")
         print("Valid  contact report:")
         print("ID:", contac1.contact_id)
-        print("Type:", contac1.contact_type)
+        print("Type:", contac1.contact_type.value)
         print("Location:", contac1.location)
         print(f"Signal: {contac1.signal_strength}/10")
         print(f"Duration: {contac1.duration_minutes} minutes")
@@ -91,14 +90,23 @@ def main() -> None:
         print("========================================")
         print("Valid  contact report:")
         print("ID:", contac2.contact_id)
-        print("Type:", contac2.contact_type)
+        print("Type:", contac2.contact_type.value)
         print("Location:", contac2.location)
         print(f"Signal: {contac2.signal_strength}/10")
         print(f"Duration: {contac2.duration_minutes} minutes")
         print(f"Witnesses: {contac2.witness_count}")
         print(f"Message: '{contac2.message_received}'")
     except Exception as e:
-        print(f"\n{e}")
+        # e.errors() returns the cleaned-up list of errors from Pydantic
+        if hasattr(e, 'errors'):
+            # ("Value error, Must have...")
+            raw_msg = e.errors()[0]['msg']
+            clean_msg = raw_msg.replace("Value error, ", "")
+            # We only show the first error
+            print(f"{clean_msg}")
+        # fails for a reason other than Pydantic
+        else:
+            print(f"{e}")
 
 
 if __name__ == "__main__":
