@@ -56,18 +56,18 @@ class SpaceMission(BaseModel):
 
     @model_validator(mode='after')
     def my_validator(self) -> 'SpaceMission':
-        if not self.mission_id.startswith("M"):
-            raise ValueError("Mission ID must start with “M”")
-        elif self._has_coman_capt() is False:
-            raise ValueError(
-                "Mission must have at least one Commander or Captain"
-            )
-        elif self.duration_days > 365 and self._experienced_crew() is False:
-            raise ValueError(
-                "Mission must need 50% experienced crew (5+ years)"
-            )
-        elif self._members_active() is False:
-            raise ValueError("All crew members must be active")
+        assert self.mission_id.startswith("M"), (
+            "Mission ID must start with “M”"
+        )
+        assert self._has_coman_capt(), (
+            "Mission must have at least one Commander or Captain"
+        )
+        assert not (
+            self.duration_days > 365 and not self._experienced_crew()
+        ), "Mission must need 50% experienced crew (5+ years)"
+        assert self._members_active(), (
+            "All crew members must be active"
+        )
         # always at the end
         return self
 
