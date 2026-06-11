@@ -58,9 +58,9 @@ if __name__ == "__main__":
 
     print("Testing power filter...")
     mages = [
-        {"name": "Alex", "power": 85, "element": "Fire"},
-        {"name": "Jordan", "power": 120, "element": "Water"},
-        {"name": "Riley", "power": 30, "element": "Earth"}
+        {"name": "Sebas", "power": 85, "element": "Fire"},
+        {"name": "Rachel", "power": 120, "element": "Water"},
+        {"name": "Celia", "power": 30, "element": "Earth"}
     ]
     filtered_mages = power_filter(mages, 85)
     for m in filtered_mages:
